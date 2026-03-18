@@ -645,6 +645,41 @@
     transform: scale(1.1);
   }
 
+  /* Locked notice */
+  .locked-notice {
+    display: none;
+    margin-top: 14px;
+    padding: 10px 16px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 10px;
+    font-size: 0.78rem;
+    color: rgba(201,168,76,0.6);
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .input-field:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .day-slider:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .btn-calculate:disabled {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
   /* Confetti bits */
   @keyframes confettiFloat {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
@@ -694,7 +729,8 @@
       <div class="slider-labels"><span>0</span><span>10</span><span>20</span><span>30</span></div>
     </div>
 
-    <button class="btn-calculate" onclick="calculate()">✦ Hitung Rating Puasa</button>
+    <button class="btn-calculate" id="btnCalculate" onclick="calculate()">✦ Hitung Rating Puasa</button>
+    <div class="locked-notice" id="lockedNotice">🔒 Data sudah dikunci — tidak dapat diubah kembali</div>
   </div>
 
   <!-- Result Section -->
@@ -823,7 +859,18 @@ function getGrade(pct) {
   return { letter: 'F', desc: 'Belum Berpuasa', stars: 0 };
 }
 
+let submitted = false;
+
 function calculate() {
+  if (submitted) return;
+  submitted = true;
+
+  // Lock all inputs
+  document.getElementById('namaInput').disabled = true;
+  document.getElementById('daySlider').disabled = true;
+  document.getElementById('btnCalculate').disabled = true;
+  document.getElementById('lockedNotice').style.display = 'block';
+
   const nama = document.getElementById('namaInput').value.trim() || 'Hamba Allah';
   const days = currentDays;
   const pct = Math.round((days / 30) * 100);
