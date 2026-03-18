@@ -6,7 +6,6 @@
 <title>Ramadan Fasting Rating</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
 <style>
   :root {
     --gold: #C9A84C;
@@ -467,54 +466,124 @@
     transform: rotate(-20deg);
   }
 
+  .thr-idul {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    letter-spacing: 0.2em;
+  }
+
   .thr-title {
     font-family: 'Amiri', serif;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: var(--green-light);
     margin-bottom: 4px;
     text-shadow: 0 0 20px rgba(82,183,136,0.4);
+    line-height: 1.3;
+  }
+
+  .thr-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin: 6px 0 4px;
+    text-shadow: 0 0 20px rgba(201,168,76,0.4);
+  }
+
+  .thr-greeting {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(253,246,227,0.85);
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .thr-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 16px;
+    width: 180px;
   }
 
   .thr-sub {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(82,183,136,0.5);
-    margin-bottom: 24px;
-  }
-
-  .thr-amount {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--green-light);
-    margin-bottom: 8px;
-    text-shadow: 0 0 30px rgba(82,183,136,0.4);
-  }
-
-  .thr-amount-label {
     font-size: 0.75rem;
-    color: rgba(82,183,136,0.5);
-    margin-bottom: 28px;
+    color: rgba(82,183,136,0.6);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
   }
 
-  .barcode-wrap {
+  /* DANA Card */
+  .dana-wrap {
     background: white;
-    border-radius: 12px;
-    padding: 16px 20px 12px;
+    border-radius: 16px;
+    padding: 20px 20px 16px;
     display: inline-block;
-    margin: 0 auto;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    min-width: 200px;
   }
 
-  .barcode-wrap svg {
-    display: block;
+  .dana-logo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dana-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #118EEA;
+    letter-spacing: -0.02em;
+  }
+
+  .dana-logo-sub {
+    font-size: 0.65rem;
+    color: #999;
+    letter-spacing: 0.05em;
+  }
+
+  .qr-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .qr-wrap canvas, .qr-wrap img {
+    border-radius: 8px;
+  }
+
+  .dana-link-row {
+    text-align: center;
+  }
+
+  .dana-link-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #118EEA, #0066CC);
+    color: white;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .dana-link-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(17,142,234,0.4);
   }
 
   .barcode-label-text {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     color: rgba(82,183,136,0.5);
-    margin-top: 16px;
-    letter-spacing: 0.1em;
+    margin-top: 4px;
+    letter-spacing: 0.08em;
   }
 
   /* Not qualified */
@@ -604,7 +673,7 @@
       <div class="divider-diamond"></div>
       <div class="divider-line"></div>
     </div>
-    <div class="title-main"> Rating Puasa Ramadan Tadika Mesra</div>
+    <div class="title-main">Rating Puasa Ramadan Tadika Mesra</div>
   </div>
 
   <!-- Input Card -->
@@ -693,14 +762,29 @@
 
     <!-- THR Section (>80%) -->
     <div class="thr-section" id="thrSection">
-      <div class="thr-title">🎉 Selamat! Anda Mendapat THR!</div>
-      <div class="thr-sub">Tunjangan Hari Raya Puasa</div>
-      <div class="thr-amount" id="thrAmount">Rp 100.000</div>
-      <div class="thr-amount-label">Klaim hadiah Anda dengan barcode di bawah</div>
-      <div class="barcode-wrap">
-        <svg id="barcodeEl"></svg>
+      <div class="thr-idul">🌙✨🌙</div>
+      <div class="thr-title">Selamat Hari Raya Idul Fitri</div>
+      <div class="thr-arabic">عيد مبارك</div>
+      <div class="thr-greeting">Mohon Maaf Lahir &amp; Batin</div>
+      <div class="thr-divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
       </div>
-      <div class="barcode-label-text">📲 Scan barcode untuk klaim THR Anda</div>
+      <div class="thr-sub">Scan QR DANA di bawah untuk kirim THR 🎁</div>
+      <div class="dana-wrap">
+        <div class="dana-logo-bar">
+          <span class="dana-logo-text">DANA</span>
+          <span class="dana-logo-sub">Transfer THR</span>
+        </div>
+        <div class="qr-wrap" id="qrWrap"></div>
+        <div class="dana-link-row">
+          <a id="danaLink" href="https://link.dana.id/qr/dummy12345" target="_blank" class="dana-link-btn">
+            🔗 Buka Link DANA
+          </a>
+        </div>
+      </div>
+      <div class="barcode-label-text">📲 Scan QR Code atau klik link untuk kirim THR via DANA</div>
     </div>
 
     <!-- Not Qualified -->
@@ -815,25 +899,24 @@ function calculate() {
   if (pct > 80) {
     setTimeout(() => {
       thrSection.style.display = 'block';
-      const thr = pct === 100 ? 500000 : pct >= 90 ? 250000 : 100000;
-      document.getElementById('thrAmount').textContent = 'Rp ' + thr.toLocaleString('id-ID');
 
-      // Generate barcode
-      const code = 'THR-' + nama.replace(/\s/g,'').toUpperCase().slice(0,6) + '-' + days + 'HARI-' + Date.now().toString().slice(-6);
+      // DANA link — ganti URL ini dengan link DANA asli kamu
+      const DANA_LINK = 'https://link.dana.id/qr/dummy12345';
+      document.getElementById('danaLink').href = DANA_LINK;
+
+      // Generate QR Code
+      const qrWrap = document.getElementById('qrWrap');
+      qrWrap.innerHTML = '';
       try {
-        JsBarcode('#barcodeEl', code, {
-          format: 'CODE128',
-          width: 2,
-          height: 70,
-          displayValue: true,
-          fontSize: 11,
-          font: 'Outfit',
-          background: '#ffffff',
-          lineColor: '#1A1208',
-          margin: 10,
-          textMargin: 6
+        new QRCode(qrWrap, {
+          text: DANA_LINK,
+          width: 180,
+          height: 180,
+          colorDark: '#118EEA',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
         });
-      } catch(e) {}
+      } catch(e) { qrWrap.innerHTML = '<p style="color:#118EEA;font-size:0.8rem">QR tidak tersedia</p>'; }
 
       // confetti
       spawnConfetti(thrSection);
